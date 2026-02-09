@@ -45,14 +45,14 @@ $(OBJ_DIR)/%.o: %.asm
 	@mkdir -p $(dir $@)
 	@echo Compiling $@
 
-re: fclean compile
+re: fclean all
 
 fclean: clean
 	@echo Removed $(NAME)
 	@rm -rf $(NAME)
 
 clean:
-	@echo Removed $(OBJ_DIR)
-	@rm -rf $(OBJ_DIR)
+	@echo Removed $(BUILD_DIR)
+	@rm -rf $(BUILD_DIR)
 
-.PHONY: all clean fclean re compile
+.PHONY: all clean fclean re
