@@ -6,18 +6,38 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:03:04 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 10:54:33 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 12:17:23 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "kernel.h"
+#include "ft_io.h"
+
+# define KFS_VERSION "kfs-1"
+# define KFS_CREDITS "(by tebandam & mbatty)"
+
+# define KFS_HEADER "\
+42      :::      ::::::::\n\
+      :+:      :+:    :+:\n\
+    +:+ +:+         +:+  \n\
+  +#+  +:+       +#+     \n\
++#+#+#+#+#+   +#+        \n\
+     #+#    #+#          \n\
+    ###   ###########    \n\
+\n\
+Welcome to " KFS_VERSION "! " KFS_CREDITS "\n"
+
+# define SHELL_PROMPT ":>"
 
 void	main(void)
 {
 	terminal_initialize();
 
-	terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
-	terminal_putstr("42");
+	terminal_setcolor(vga_entry_color(VGA_COLOR_LIGHT_GREEN, VGA_COLOR_BLACK));
+	ft_printf("%s", KFS_HEADER);
+
+	terminal_setcolor(vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK));
+	ft_printf("%s", SHELL_PROMPT);
 	while (1)
 	{
 		;

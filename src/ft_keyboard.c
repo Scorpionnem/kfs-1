@@ -1,26 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_io.h                                            :+:      :+:    :+:   */
+/*   ft_keyboard.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 10:49:54 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 12:05:33 by mbatty           ###   ########.fr       */
+/*   Created: 2026/02/13 11:31:21 by mbatty            #+#    #+#             */
+/*   Updated: 2026/02/13 11:31:22 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IO_H
-# define FT_IO_H
-
-# include <stdarg.h>
-# include <ft_terminal.h>
-
-int		ft_printf(const char *str, ...);
-
-// From sys/io.h
-uint8_t	inb(uint16_t port);
-void	outb(uint16_t port, uint8_t val);
-//
-
-#endif

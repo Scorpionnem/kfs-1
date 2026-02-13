@@ -18,13 +18,15 @@ stack_top:
 
 section .text
 global _start:function (_start.end - _start)
+extern main
+
 _start:
 	mov esp, stack_top
 
-	extern main
 	call main
 
 	cli
-.hang:	hlt
+	hlt
+.hang:
 	jmp .hang
 .end:
