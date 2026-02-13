@@ -1,0 +1,54 @@
+Ecrire le noyau (Le kernel).
+
+(Fichier boot.asm)
+Le kernel doit: 
+	- démarrer via GRUB
+ 	- Une base de démarrage en ASM
+	- Une bibliothèque de base pour le noyau, 
+	avec des fonctions et des types essentiels
+	- Du code simple pour afficher du texte à l’écran
+	- Un noyau basique de type “Hello world”
+
+Pour compiler on utilise gcc et nasm avec ses flags:
+-fno-builtin
+-fno-exception
+-fno-stack-protector
+-fno-rtti
+-nostdlib
+-nodefaultlibs
+(A regarder dans le Makefile).
+
+------------------------------------------
+
+(Fichier linker.ld) 
+- Creer un script de linkage. (MOI)
+- Tu peux utiliser le binaire ld de ton système
+- L’architecture i386 (x86) est obligatoire
+Le linker doit dire: 
+- où va le code
+- où va la mémoire
+- où est le point d’entrée
+
+------------------------------------------
+
+
+i386
+la manière dont le processeur comprend les instructions.
+
+
+Le but: 
+
+Afficher "42" à l’écran.
+
+Le plan: 
+
+1. GRUB charge ton noyau
+2. Ton ASM démarre
+3. Ton ASM appelle main()
+4. Ton C écrit "42" en mémoire vidéo
+5. Tu vois 42 à l’écran
+
+
+Documentations: 
+
+https://wiki.osdev.org/Expanded_Main_Page
