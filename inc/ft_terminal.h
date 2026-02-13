@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:14:46 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 11:51:08 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 13:56:44 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@
 
 typedef enum s_vga_color
 {
-	VGA_COLOR_BLACK = 0,
-	VGA_COLOR_BLUE = 1,
-	VGA_COLOR_GREEN = 2,
-	VGA_COLOR_CYAN = 3,
-	VGA_COLOR_RED = 4,
-	VGA_COLOR_MAGENTA = 5,
-	VGA_COLOR_BROWN = 6,
-	VGA_COLOR_LIGHT_GREY = 7,
-	VGA_COLOR_DARK_GREY = 8,
-	VGA_COLOR_LIGHT_BLUE = 9,
-	VGA_COLOR_LIGHT_GREEN = 10,
-	VGA_COLOR_LIGHT_CYAN = 11,
-	VGA_COLOR_LIGHT_RED = 12,
-	VGA_COLOR_LIGHT_MAGENTA = 13,
-	VGA_COLOR_LIGHT_BROWN = 14,
-	VGA_COLOR_WHITE = 15,
+	VGA_COLOR_BLACK = 0, // FG & BG
+	VGA_COLOR_BLUE = 1, // FG & BG
+	VGA_COLOR_GREEN = 2, // FG & BG
+	VGA_COLOR_CYAN = 3, // FG & BG
+	VGA_COLOR_RED = 4, // FG & BG
+	VGA_COLOR_MAGENTA = 5, // FG & BG
+	VGA_COLOR_BROWN = 6, // FG & BG
+	VGA_COLOR_LIGHT_GREY = 7, // FG & BG
+	VGA_COLOR_DARK_GREY = 8, // FG
+	VGA_COLOR_LIGHT_BLUE = 9, // FG
+	VGA_COLOR_LIGHT_GREEN = 10, // FG
+	VGA_COLOR_LIGHT_CYAN = 11, // FG
+	VGA_COLOR_LIGHT_RED = 12, // FG
+	VGA_COLOR_LIGHT_MAGENTA = 13, // FG
+	VGA_COLOR_LIGHT_BROWN = 14, // FG
+	VGA_COLOR_WHITE = 15, // FG
 }	vga_color;
 
 uint8_t		vga_entry_color(vga_color fg, vga_color bg);
