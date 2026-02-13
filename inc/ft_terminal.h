@@ -6,16 +6,14 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:14:46 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 13:56:44 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 15:07:56 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_TERMINAL_H
 # define FT_TERMINAL_H
 
-# include <stdbool.h>
-# include <stddef.h>
-# include <stdint.h>
+#include <ft_stdint.h>
 
 typedef enum s_vga_color
 {
