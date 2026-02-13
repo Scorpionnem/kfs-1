@@ -92,6 +92,7 @@ int	terminal_putchar(char c)
 	{
 		terminal_row++;
 		terminal_column = 0;
+		update_cursor(terminal_column, terminal_row);
 		return (1);
 	}
 
