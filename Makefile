@@ -1,4 +1,5 @@
 NAME := kfs-1.iso
+KERNEL := kernel
 
 # Compilers
 CC :=	gcc
@@ -6,15 +7,19 @@ ASM :=	nasm
 #
 
 # Flags
-CFLAGS :=	-fno-builtin -fno-rtti -fno-stack-protector -nostdlib -nodefaultlibs
-ASMFLAGS :=
+CFLAGS :=	-m32 -fno-builtin -fno-stack-protector -nostdlib -nodefaultlibs
+ASMFLAGS :=	-f elf32
 #
 
 # Sources
 C_SRCS :=	src/main.c\
 
 ASM_SRCS :=	src/boot.asm\
+
+INCLUDES :=	inc/\
 #
+
+INCLUDES :=	$(addprefix -I, $(INCLUDES))
 
 # Config
 LINKER := cfg/linker.ld
@@ -31,8 +36,12 @@ ASM_OBJS :=	$(ASM_SRCS:%.asm=$(OBJ_DIR)/%.o)
 
 all: $(NAME)
 
-# Should link all objects and create the .iso
 $(NAME): $(C_OBJS) $(ASM_OBJS)
+	@ld -m elf_i386 -T $(LINKER) -o $(BUILD_DIR)/$(KERNEL) $(C_OBJS) $(ASM_OBJS)
+	@mkdir -p $(BUILD_DIR)/iso/boot/grub
+	@cp $(BUILD_DIR)/$(KERNEL) $(BUILD_DIR)/iso/boot/
+	@cp $(GRUB_CFG) $(BUILD_DIR)/iso/boot/grub/
+	@grub-mkrescue -o kfs-1.iso $(BUILD_DIR)/iso/
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
@@ -40,10 +49,12 @@ $(BUILD_DIR):
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(dir $@)
 	@echo Compiling $@
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OBJ_DIR)/%.o: %.asm
 	@mkdir -p $(dir $@)
 	@echo Compiling $@
+	@$(ASM) $(ASMFLAGS) $< -o $@
 
 re: fclean all
 
