@@ -12,6 +12,7 @@
 
 #include "kernel.h"
 #include "ft_io.h"
+#include "ft_keyboard.h"  
 
 # define KFS_VERSION "kfs-1"
 # define KFS_CREDITS "(by tebandam & mbatty)"
@@ -55,6 +56,6 @@ void	main(void)
 	ft_printf("%s", SHELL_PROMPT);
 	while (1)
 	{
-		;
+		keyboard_handler();
 	}
 }

@@ -16,6 +16,7 @@ C_SRCS :=	src/main.c\
 			src/ft_string.c\
 			src/ft_terminal.c\
 			src/ft_io.c\
+			src/ft_keyboard.c\
 
 ASM_SRCS :=	src/boot.asm\
 
