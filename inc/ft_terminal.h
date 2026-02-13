@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:14:46 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 10:33:20 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 10:54:28 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef enum s_vga_color
 uint8_t		vga_entry_color(vga_color fg, vga_color bg);
 uint16_t	vga_entry(unsigned char uc, uint8_t color);
 
-void	terminal_writestring(const char* data);
-void	terminal_write(const char* data, size_t size);
-void	terminal_putchar(char c);
+int	terminal_putstr(const char* data);
+int	terminal_write(const char* data, size_t size);
+int	terminal_putchar(char c);
 void	terminal_putentryat(char c, uint8_t color, size_t x, size_t y);
 void	terminal_setcolor(uint8_t color);
 void	terminal_initialize(void);

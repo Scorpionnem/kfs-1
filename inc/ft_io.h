@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_io.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 10:03:04 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 10:54:33 by mbatty           ###   ########.fr       */
+/*   Created: 2026/02/13 10:49:54 by mbatty            #+#    #+#             */
+/*   Updated: 2026/02/13 10:56:37 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "kernel.h"
+#ifndef FT_IO_H
+# define FT_IO_H
 
-void	main(void)
-{
-	terminal_initialize();
+# include <stdarg.h>
+# include <ft_terminal.h>
 
-	terminal_setcolor(VGA_COLOR_LIGHT_GREEN);
-	terminal_putstr("42");
-	while (1)
-	{
-		;
-	}
-}
+int	ft_printf(const char *str, ...);
+
+#endif

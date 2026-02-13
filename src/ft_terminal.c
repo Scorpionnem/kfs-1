@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:15:18 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 10:35:00 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 10:54:22 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 	terminal_buffer[index] = vga_entry(c, color);
 }
 
-void	terminal_putchar(char c)
+int	terminal_putchar(char c)
 {
 	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
 	if (++terminal_column == VGA_WIDTH) {
@@ -68,15 +68,17 @@ void	terminal_putchar(char c)
 		if (++terminal_row == VGA_HEIGHT)
 			terminal_row = 0;
 	}
+	return (1);
 }
 
-void	terminal_write(const char* data, size_t size)
+int	terminal_write(const char* data, size_t size)
 {
 	for (size_t i = 0; i < size; i++)
 		terminal_putchar(data[i]);
+	return (size);
 }
 
-void	terminal_writestring(const char* data)
+int	terminal_putstr(const char* data)
 {
-	terminal_write(data, ft_strlen(data));
+	return (terminal_write(data, ft_strlen(data)));
 }
