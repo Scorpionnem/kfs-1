@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:15:18 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 15:57:19 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:01:39 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ void	terminal_putentryat(char c, uint8_t color, size_t x, size_t y)
 	const size_t index = y * VGA_WIDTH + x;
 
 	terminal_buffer[index] = vga_entry(c, color);
-
-	update_cursor(x + 1, y); // Set cursor on last written char
 }
 
 void	terminal_scroll_up()
@@ -82,7 +80,7 @@ void	terminal_scroll_up()
 	{
 		const size_t index = terminal_row * VGA_WIDTH + i;
 
-		terminal_buffer[index] = vga_entry(' ', vga_entry_color(VGA_COLOR_BLACK, VGA_COLOR_BLACK));
+		terminal_buffer[index] = vga_entry(' ', vga_entry_color(VGA_COLOR_WHITE, VGA_COLOR_BLACK));
 	}
 }
 
@@ -92,24 +90,21 @@ int	terminal_putchar(char c)
 	{
 		terminal_row++;
 		terminal_column = 0;
-		update_cursor(terminal_column, terminal_row);
-		return (1);
 	}
 
-	terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
-	terminal_column++;
-	if (terminal_column == VGA_WIDTH)
+	if (c != '\n')
 	{
-		terminal_row++;
-		if (terminal_row == VGA_HEIGHT && terminal_column == VGA_WIDTH)
-		{
-			terminal_scroll_up();
-			return (1);
-		}
-		if (terminal_row == VGA_HEIGHT)
-			terminal_row = 0;
-		terminal_column = 0;
+		terminal_putentryat(c, terminal_color, terminal_column, terminal_row);
+		terminal_column++;
 	}
+	if (terminal_column >= VGA_WIDTH)
+	{
+		terminal_column = 0;
+		terminal_row++;
+	}
+	if (terminal_row >= VGA_HEIGHT)
+		terminal_scroll_up();
+	update_cursor(terminal_column, terminal_row);
 	return (1);
 }
 
