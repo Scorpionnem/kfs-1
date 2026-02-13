@@ -6,7 +6,7 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:15:18 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 18:01:39 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:17:26 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ uint16_t	vga_entry(unsigned char uc, uint8_t color)
 	return (uint16_t) uc | (uint16_t) color << 8;
 }
 
+extern int			cursor_x;
+extern int			cursor_y;
 void update_cursor(int x, int y)
 {
+	cursor_x = x;
+	cursor_y = y;
+	terminal_row = y;
+	terminal_column = x;
 	uint16_t pos = y * VGA_WIDTH + x;
 
 	outb(0x3D4, 0x0F);
@@ -39,10 +45,7 @@ void update_cursor(int x, int y)
 	outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
 }
 
-/*
-	Initializes terminal with spaces to clear the screen.
-*/
-void	terminal_initialize(void)
+void	terminal_clear(uint16_t *screen)
 {
 	terminal_row = 0;
 	terminal_column = 0;
@@ -54,9 +57,17 @@ void	terminal_initialize(void)
 		{
 			const size_t index = y * VGA_WIDTH + x;
 
-			terminal_buffer[index] = vga_entry(' ', terminal_color);
+			screen[index] = vga_entry(' ', terminal_color);
 		}
 	}
+}
+
+/*
+	Initializes terminal with spaces to clear the screen.
+*/
+void	terminal_initialize(void)
+{
+	terminal_clear(terminal_buffer);
 }
 
 void	terminal_setcolor(uint8_t color)

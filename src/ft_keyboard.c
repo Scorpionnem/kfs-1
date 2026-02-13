@@ -6,11 +6,12 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 11:31:21 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 18:02:57 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:16:48 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_io.h"
+#include "ft_libc.h"
 
 unsigned char get_scancode()
 {
@@ -19,9 +20,36 @@ unsigned char get_scancode()
 	return scancode;
 }
 
+extern uint16_t		*terminal_buffer;
+extern uint16_t		screen_2[VGA_WIDTH * VGA_HEIGHT];
+extern int			cursor_x2;
+extern int			cursor_y2;
+extern int			cursor_x;
+extern int			cursor_y;
+
+void	swap_screen()
+{
+	uint16_t	buf[VGA_WIDTH * VGA_HEIGHT];
+	int			tmpx;
+	int			tmpy;
+
+	tmpx = cursor_x;
+	tmpy = cursor_y;
+	ft_memcpy(buf, terminal_buffer, (VGA_WIDTH * VGA_HEIGHT) * sizeof(uint16_t));
+
+	cursor_x = cursor_x2;
+	cursor_y = cursor_y2;
+	ft_memcpy(terminal_buffer, screen_2, (VGA_WIDTH * VGA_HEIGHT) * sizeof(uint16_t));
+
+	ft_memcpy(screen_2, buf, (VGA_WIDTH * VGA_HEIGHT) * sizeof(uint16_t));
+	cursor_x2 = tmpx;
+	cursor_y2 = tmpy;
+	update_cursor(cursor_x, cursor_y);
+}
+
 void	ft_f1()
 {
-	ft_printf("je suis appele");
+	swap_screen();
 }
 
 int	pressed = 0;

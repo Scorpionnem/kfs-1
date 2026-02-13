@@ -6,13 +6,13 @@
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/13 10:03:04 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 14:06:50 by mbatty           ###   ########.fr       */
+/*   Updated: 2026/02/13 18:14:41 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "kernel.h"
 #include "ft_io.h"
-#include "ft_keyboard.h"  
+#include "ft_keyboard.h"
 
 # define KFS_VERSION "kfs-1"
 # define KFS_CREDITS "(by tebandam & mbatty)"
@@ -46,9 +46,16 @@ void	print_header_and_colors()
 	ft_printf("\n");
 }
 
+uint16_t	screen_2[VGA_WIDTH * VGA_HEIGHT];
+int			cursor_x2 = 0;
+int			cursor_y2 = 0;
+int			cursor_x = 0;
+int			cursor_y = 0;
+
 void	main(void)
 {
 	terminal_initialize();
+	terminal_clear(screen_2);
 
 	print_header_and_colors();
 
