@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   kernel.h                                           :+:      :+:    :+:   */
+/*   ft_libc.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbatty <mbatty@student.42angouleme.fr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/13 10:30:13 by mbatty            #+#    #+#             */
-/*   Updated: 2026/02/13 10:33:32 by mbatty           ###   ########.fr       */
+/*   Created: 2026/02/13 10:19:53 by mbatty            #+#    #+#             */
+/*   Updated: 2026/02/13 10:20:05 by mbatty           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef KERNEL_H
-# define KERNEL_H
+#ifndef FT_LIBC_H
+# define FT_LIBC_H
 
-# include "ft_terminal.h"
-# include "ft_libc.h"
+# include "ft_string.h"
 
 #endif

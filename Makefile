@@ -13,6 +13,8 @@ ASMFLAGS :=	-f elf32
 
 # Sources
 C_SRCS :=	src/main.c\
+			src/ft_string.c\
+			src/ft_terminal.c\
 
 ASM_SRCS :=	src/boot.asm\
 
