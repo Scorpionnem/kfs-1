@@ -97,6 +97,22 @@ void	terminal_scroll_up()
 
 int	terminal_putchar(char c)
 {
+	if (c == '\b')  // Backspace
+    {
+		if (terminal_column > 0)
+		{
+			terminal_column--;
+			terminal_putentryat(' ', terminal_color, terminal_column, terminal_row);
+		}
+		else if (terminal_row > 0) 
+		{
+			terminal_row--; // go back up the line
+			terminal_column = VGA_WIDTH - 1;
+			terminal_putentryat(' ', terminal_color, terminal_column, terminal_row);
+		}
+		update_cursor(terminal_column, terminal_row);
+		return (1);
+    }
 	if (c == '\n')
 	{
 		terminal_row++;

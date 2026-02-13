@@ -97,6 +97,7 @@ char scancode_to_char[256] = {
 
 	[0x1C] = '\n',  // Enter
 	[0x39] = ' ',   // Space
+	[0x0E] = '\b', // Backspace
 };
 
 void keyboard_handler()
